@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Joki Free Fire | Cepat, Aman, Terpercaya</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="description" content="Jasa joki Free Fire cepat & aman. Pilih rank, hitung harga otomatis, order via WhatsApp."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --grain: radial-gradient(circle at 25% 10%, rgba(255,255,255,.08), transparent 40%), radial-gradient(circle at 80% 0%, rgba(0,255,200,.08), transparent 35%), radial-gradient(circle at 90% 90%, rgba(0,150,255,.06), transparent 45%); }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+    .title { font-family: "Chakra Petch", monospace; }
+    .glass { backdrop-filter: blur(10px); background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border: 1px solid rgba(255,255,255,.12); }
+    .bg-grid { background-image: linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px), var(--grain); background-size: 40px 40px, 40px 40px, cover; background-position: center; }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-950 text-white">
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-40 border-b border-white/10 bg-slate-950/80 backdrop-blur">
+    <div class="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-2xl grid place-items-center bg-emerald-400/20 border border-emerald-300/30 shadow">
+          <span class="text-xl">⚡</span>
+        </div>
+        <span class="title text-lg font-bold tracking-wide" id="brand">Joki FF Pro</span>
+      </div>
+      <a id="waTop" href="#order" class="rounded-xl px-4 py-2 text-sm glass hover:bg-white/10 transition">Order Sekarang</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden bg-grid">
+    <div class="absolute inset-0 opacity-30" aria-hidden="true"></div>
+    <div class="mx-auto max-w-7xl px-4 py-16 grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h1 class="title text-4xl md:text-5xl font-bold leading-tight">Jasa Joki <span class="text-emerald-400">Free Fire</span><br/>Cepat · Aman · Terpercaya</h1>
+        <p class="mt-4 text-white/80 max-w-xl">Naik rank tanpa pusing. Garansi aman akun, bukti progres harian, dan dukungan 24/7. Pilih rank tujuanmu, harga langsung <em>auto-calc</em>.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#pricelist" class="rounded-xl px-5 py-3 glass">Lihat Pricelist</a>
+          <a href="#order" class="rounded-xl px-5 py-3 bg-emerald-500 text-slate-900 font-semibold hover:opacity-90 transition">Mulai Order</a>
+        </div>
+        <div class="mt-6 text-xs text-white/60">*Gunakan gambar karakter milik Anda sendiri untuk menghindari isu hak cipta.</div>
+      </div>
+      <div class="relative">
+        <!-- Ganti src berikut dengan gambar karakter Free Fire milik Anda -->
+        <img id="charImg" class="w-full rounded-3xl border border-white/10 shadow-2xl" src="https://images.unsplash.com/photo-1611587266859-675abcf02ed3?q=80&w=1200&auto=format&fit=crop" alt="Karakter Free Fire"/>
+        <div class="absolute -bottom-4 -left-4 rotate-2 rounded-2xl px-4 py-2 bg-emerald-500 text-slate-900 font-bold shadow-lg">FAST UP RANK</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICE LIST -->
+  <section id="pricelist" class="mx-auto max-w-7xl px-4 py-14">
+    <h2 class="title text-3xl font-bold">Pricelist Rank</h2>
+    <p class="text-black/70 mt-2">Harga per kenaikan <span class="italic">1 tingkat</span>. Paket custom tersedia.</p>
+
+    <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Cards akan diisi via JS agar mudah edit -->
+      <div id="rankCards" class="contents"></div>
+    </div>
+  </section>
+
+  <!-- ORDER FORM / CALCULATOR -->
+  <section id="order" class="bg-slate-900/60 border-t border-white/10">
+    <div class="mx-auto max-w-7xl px-4 py-14 grid lg:grid-cols-2 gap-10 items-start">
+      <div>
+        <h3 class="title text-2xl font-bold">Hitung & Order</h3>
+        <p class="text-white/70 mt-2">Pilih rank saat ini dan target. Total harga dihitung otomatis.</p>
+        <form id="orderForm" class="mt-6 grid gap-4 glass rounded-2xl p-6">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <label class="grid gap-2">
+              <span class="text-sm text-white/70">UID</span>
+              <input id="uid" type="text" required placeholder="contoh: 12345678" class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 outline-none focus:border-emerald-400"/>
+            </label>
+            <label class="grid gap-2">
+              <span class="text-sm text-white/70">Nickname</span>
+              <input id="nickname" type="text" required placeholder="nama in-game" class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 outline-none focus:border-emerald-400"/>
+            </label>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <label class="grid gap-2">
+              <span class="text-sm text-black/70">Rank Saat Ini</span>
+              <select id="currentRank" class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 outline-none focus:border-emerald-400"></select>
+            </label>
+            <label class="grid gap-2">
+              <span class="text-sm text-black/70">Target Rank</span>
+              <select id="targetRank" class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 outline-none focus:border-emerald-400"></select>
+            </label>
+          </div>
+
+          <label class="grid gap-2">
+            <span class="text-sm text-white/70">Catatan Tambahan</span>
+            <textarea id="notes" rows="3" placeholder="contoh: jam push 19.00–22.00, no login FB, dsb." class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 outline-none focus:border-emerald-400"></textarea>
+          </label>
+
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-sm text-white/70">Estimasi Biaya</div>
+              <div id="total" class="title text-3xl font-bold">Rp0</div>
+              <div id="stepInfo" class="text-xs text-white/60 mt-1"></div>
+            </div>
+            <button type="submit" class="rounded-xl px-5 py-3 bg-emerald-500 text-slate-900 font-semibold hover:opacity-90 transition">Order via WhatsApp</button>
+          </div>
+        </form>
+      </div>
+      <div class="space-y-4">
+        <div class="glass rounded-2xl p-6">
+          <h4 class="title text-lg font-bold">Kenapa pilih kami?</h4>
+          <ul class="mt-3 list-disc pl-5 text-white/80 space-y-1">
+            <li>Akun aman & terpercaya.</li>
+            <li>Pro player berpengalaman, bukti progres harian.</li>
+            <li>Garansi target atau uang kembali*.</li>
+          </ul>
+          <p class="text-xs text-white/50 mt-3">*S&K berlaku.</p>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <h4 class="title text-lg font-bold">Metode Pembayaran</h4>
+          <p class="text-white/80">Dana · OVO · GoPay · Transfer Bank · QRIS</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/10">
+    <div class="mx-auto max-w-7xl px-4 py-8 text-sm text-white/60 flex flex-wrap items-center justify-between gap-3">
+      <div>© <span id="year"></span> <span id="brandFoot">Joki FF Pro</span>. All rights reserved.</div>
+      <a href="#" class="hover:text-white/90">Kebijakan & Syarat</a>
+    </div>
+  </footer>
+
+  <script>
+    // =============================
+    // KONFIGURASI — silakan ganti sesuai kebutuhan
+    // =============================
+    const BRAND = "EVOSTORE"; // nama brand
+    const WHATSAPP_NUMBER = "6282241675534"; // tanpa +
+    const CHARACTER_IMG = "https://www.canva.com/design/DAG0JSVCkO0/4yROXaQFcyWWFMZHoxx5BA/view?utm_content=DAG0JSVCkO0&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h18cede7ca8"
+    // Pricelist rank (harga per naik 1 bintang)
+    const RANKS = [
+      { key: "bronze", name: "Bronze", price: 1000 },
+      { key: "silver", name: "Silver", price: 2500 },
+      { key: "gold", name: "Gold", price: 5000 },
+      { key: "platinum", name: "Platinum", price: 10000 },
+      { key: "diamond", name: "Diamond", price: 15000 },
+      { key: "master", name: "Master", price: 30000 },
+      { key: "grandmaster", name: "Grandmaster", price: 45000 },
+    ];
+
+    // =============================
+    // INIT UI
+    // =============================
+    document.getElementById('brand').textContent = BRAND;
+    document.getElementById('brandFoot').textContent = BRAND;
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('charImg').src = CHARACTER_IMG;
+
+    const rankCardsContainer = document.getElementById('rankCards');
+    RANKS.forEach((r, i) => {
+      const card = document.createElement('article');
+      card.className = 'glass rounded-2xl p-6 flex flex-col';
+      card.innerHTML = `
+        <div class="flex items-center justify-between">
+          <h3 class="title text-xl font-bold">${r.name}</h3>
+          <span class="text-xs text-white/60">Tier ${i+1}</span>
+        </div>
+        <div class="mt-3 text-3xl title font-bold">${formatIDR(r.price)}</div>
+        <p class="text-white/70 mt-1">per naik 1 tingkat</p>
+        <div class="mt-4 flex gap-2">
+          <button data-rank="${r.key}" class="choose-start rounded-xl px-3 py-2 bg-white/10 hover:bg-white/15 text-sm">Pilih jadi <b>Start</b></button>
+          <button data-rank="${r.key}" class="choose-target rounded-xl px-3 py-2 bg-emerald-500 text-slate-900 text-sm hover:opacity-90">Pilih jadi <b>Target</b></button>
+        </div>`;
+      rankCardsContainer.appendChild(card);
+    });
+
+    const currentRankSel = document.getElementById('currentRank');
+    const targetRankSel = document.getElementById('targetRank');
+
+    RANKS.forEach(r => {
+      const o1 = document.createElement('option'); o1.value = r.key; o1.textContent = r.name; currentRankSel.appendChild(o1);
+      const o2 = document.createElement('option'); o2.value = r.key; o2.textContent = r.name; targetRankSel.appendChild(o2);
+    });
+
+    currentRankSel.value = RANKS[0].key;
+    targetRankSel.value = RANKS[RANKS.length-1].key;
+
+    // =============================
+    // LOGIC HITUNG
+    // =============================
+    const rankIndex = Object.fromEntries(RANKS.map((r, i) => [r.key, i]));
+
+    function formatIDR(n){
+      try { return new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(n); }
+      catch { return 'Rp' + (n||0).toLocaleString('id-ID'); }
+    }
+
+    function calcCost(startKey, endKey){
+      const start = rankIndex[startKey];
+      const end = rankIndex[endKey];
+      if (end <= start) return { steps:0, total:0 };
+      let total = 0;
+      for(let i=start+1;i<=end;i++) total += RANKS[i].price;
+      return { steps:end-start, total };
+    }
+
+    const totalEl = document.getElementById('total');
+    const stepInfoEl = document.getElementById('stepInfo');
+
+    function refresh(){
+      const { steps, total } = calcCost(currentRankSel.value, targetRankSel.value);
+      totalEl.textContent = formatIDR(total);
+      stepInfoEl.textContent = steps > 0 ? `${steps} tingkat kenaikan` : 'Target harus di atas rank saat ini';
+    }
+
+    refresh();
+    currentRankSel.addEventListener('change', refresh);
+    targetRankSel.addEventListener('change', refresh);
+
+    // Tombol cepat dari kartu
+    document.querySelectorAll('.choose-start').forEach(btn=>{
+      btn.addEventListener('click',()=>{ currentRankSel.value = btn.dataset.rank; refresh(); window.location.hash = '#order'; });
+    });
+    document.querySelectorAll('.choose-target').forEach(btn=>{
+      btn.addEventListener('click',()=>{ targetRankSel.value = btn.dataset.rank; refresh(); window.location.hash = '#order'; });
+    });
+
+    // =============================
+    // SUBMIT -> WhatsApp
+    // =============================
+    document.getElementById('orderForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const uid = document.getElementById('uid').value.trim();
+      const nickname = document.getElementById('nickname').value.trim();
+      const notes = document.getElementById('notes').value.trim();
+      const startName = RANKS.find(r=>r.key===currentRankSel.value).name;
+      const endName = RANKS.find(r=>r.key===targetRankSel.value).name;
+      const { total } = calcCost(currentRankSel.value, targetRankSel.value);
+      const text = encodeURIComponent(
+        `Halo ${BRAND}! Saya mau joki Free Fire.\n\nUID: ${uid}\nNickname: ${nickname}\nDari: ${startName}\nKe: ${endName}\nPerkiraan biaya: ${formatIDR(total)}\nCatatan: ${notes || '-'}`
+      );
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
+    });
+  </script>
+</body>
+</html>
